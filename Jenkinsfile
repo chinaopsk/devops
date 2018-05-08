@@ -2,7 +2,7 @@ pipeline {
     stages{
         stage("Prepare"){
             steps{
-                echo "Hello World!"s
+                echo "Hello World!"
             }
         }
         stage("Check_version"){
