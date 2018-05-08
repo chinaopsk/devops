@@ -2,7 +2,7 @@ node {
     stage("Prepare"){
         echo "Hello World!"
     }
-    stage("check_version"){
+    stage("Check_version"){
         sh "docker --version"
     }
 }
