@@ -13,25 +13,32 @@ pipeline {
             steps{
                 sh "docker --version"
             }
-        }        
-        stage("Build Image"){
-            steps{
-                sh "docker build -t ${env.imageName} ."
-                sh "docker tag ${env.imageName} ${env.imageName}:1.${env.BUILD_NUMBER}"
-            }
-        }
-        stage("Push Image"){
-            steps{
-                //sh  "docker login -u chinaopsk -p "
-                //sh  "docker push ${env.imageName}"                
-                script{
-                    docker.withRegistry('https://docker.io',  'docker-id'){
-                        def image   =   docker.build("${env.imageName}:1.${env.BUILD_NUMBER}")
-                        image.push()
-                    }
+        }    
+        stage("Deploy"){
+            steps {
+                sshagent(['uat-server']) {
+                    sh "echo 'xxxx'"
                 }
-            }
-        } 
+            } 
+        }    
+        // stage("Build Image"){
+        //     steps{
+        //         sh "docker build -t ${env.imageName} ."
+        //         sh "docker tag ${env.imageName} ${env.imageName}:1.${env.BUILD_NUMBER}"
+        //     }
+        // }
+        // stage("Push Image"){
+        //     steps{
+        //         //sh  "docker login -u chinaopsk -p "
+        //         //sh  "docker push ${env.imageName}"                
+        //         script{
+        //             docker.withRegistry('https://docker.io',  'docker-id'){
+        //                 def image   =   docker.build("${env.imageName}:1.${env.BUILD_NUMBER}")
+        //                 image.push()
+        //             }
+        //         }
+        //     }
+        // } 
     }
 }
 
