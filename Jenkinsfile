@@ -17,7 +17,7 @@ pipeline {
         stage("Deploy"){
             steps {
                 sshagent(['uat-server']) {
-                    sh "echo 'xxxx'"
+                    sh "ssh core@167.99.237.229 docker pull chinaopsk/hello-nginx"
                 }
             } 
         }    
