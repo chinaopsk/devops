@@ -25,7 +25,7 @@ pipeline {
                 //sh  "docker login -u chinaopsk -p "
                 //sh  "docker push ${env.imageName}"                
                 script{
-                    docker.withRegistry('https://registry.hub.docker.com',  'docker-id'){
+                    docker.withRegistry('https://docker.io',  'docker-id'){
                         def image   =   docker.build("${env.imageName}:1.${env.BUILD_NUMBER}")
                         image.push()
                     }
