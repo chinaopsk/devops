@@ -22,6 +22,7 @@ pipeline {
         }
         stage("Push Image"){
             steps{
+                sh "docker -u chinaopsk -p 097362018"
                 sh  "docker push ${env.imageName}"
             }
         } 
